@@ -451,3 +451,729 @@ De los tres, **BEC en PyMEs** aparece como la opción más sólida para avanzar 
 
 ## Nota final de integridad
 Este documento evitó introducir cifras no verificadas con suficiente respaldo institucional. Cuando una afirmación no pudo contrastarse con claridad o el dato exacto no estaba disponible en fuente oficial accesible, se mantuvo la redacción en términos prudentes y no concluyentes.
+
+---
+
+# MÓDULO COMPLEMENTARIO. Validación metodológica, Desk Research + User Research
+
+## Introducción del módulo complementario
+
+A partir del entregable ya desarrollado en Fase 1 y Fase 2, este módulo complementario incorpora una capa metodológica adicional orientada a validar la **existencia empírica, frecuencia, dolor y disposición a pagar** asociadas a los cinco problemas identificados. El cambio de foco es deliberado: mientras que las secciones anteriores priorizaron discovery estratégico y priorización de oportunidades, el presente módulo se concentra exclusivamente en la **validación del problema**, sin diseñar soluciones ni profundizar en la elección tecnológica.
+
+En términos metodológicos, este módulo parte de una premisa central: **ningún problema queda verdaderamente validado solo por desk research o solo por entrevistas**. La investigación secundaria permite medir escala, visibilidad pública, señal regulatoria y actividad económica ya existente. La investigación primaria, en cambio, permite verificar si el dolor se experimenta realmente como tal, si es frecuente en la vida de los actores involucrados y si alguien estaría dispuesto a pagar por resolverlo. Recién cuando ambos tracks convergen puede hablarse de validación fuerte.
+
+Por esa razón, este módulo se estructura en tres partes:
+
+1. **Track A. Desk Research metodológico complementario**.
+2. **Track B. User Research, con instrumentos listos para ejecutar por el equipo**.
+3. **Convergencia y criterios de validación cruzada**.
+
+Es importante subrayar una restricción de honestidad metodológica: **en este documento no se inventa trabajo de campo no realizado**. Por lo tanto, el Track B queda desarrollado como diseño de investigación listo para implementación, pero no presenta hallazgos empíricos que todavía no fueron recolectados por el equipo.
+
+---
+
+# TRACK A. Desk Research metodológico complementario
+
+## Objetivo del Track A
+
+El objetivo del Track A es ampliar la validación secundaria de cada problema a partir de seis señales metodológicas adicionales:
+
+- señal laboral;
+- señal regulatoria;
+- señal de mercado privado y funding;
+- señal mediática y de volumen público;
+- señal del usuario final en apps y foros;
+- señal académica y de literatura gris.
+
+A diferencia del desk research de la Fase 1, que fue construido para formular y priorizar problemas, este Track A busca responder una pregunta más estricta: **¿existen pruebas suficientes de que el problema es real, persistente y económicamente relevante?**
+
+## Alcance metodológico del Track A en este entregable
+
+Dado que el objetivo de este trabajo es mantener integridad académica y no simular búsquedas no ejecutadas, el Track A se presenta aquí como una **matriz metodológica aplicada**, con:
+
+- señal observada o inferida a partir del desk research ya realizado;
+- nivel de fuerza de esa señal;
+- lectura crítica de lo que todavía falta relevar con mayor profundidad;
+- veredicto preliminar de validación secundaria.
+
+Esto permite que el documento conserve valor académico inmediato y, al mismo tiempo, funcione como plan de trabajo concreto para continuar la validación.
+
+---
+
+## Track A por problema
+
+### P001. Prevención de phishing, smishing e ingeniería social en banca y billeteras
+
+```json
+{
+  "problem_id": "P001",
+  "desk_research": {
+    "A1_job_signal": {
+      "postings_found": "señal parcial no cuantificada en este entregable",
+      "top_employers": ["bancos", "fintechs", "procesadores de pago"],
+      "signal_strength": "moderada",
+      "notes": "La existencia de equipos antifraude y customer protection en banca y fintech sugiere presupuesto ya asignado, aunque en este trabajo no se levantó aún una tabla sistemática de postings por país."
+    },
+    "A2_regulatory_signal": {
+      "sources_found": ["CONDUSEF", "IC3/FBI"],
+      "key_stat_or_norm": "Existe documentación institucional sobre fraude digital, phishing y afectación a usuarios vulnerables; el problema supera el umbral de relevancia pública.",
+      "signal_strength": "fuerte",
+      "notes": "La señal regulatoria es clara en términos de alertas y documentación pública, aunque convendría profundizar con barrido específico en BCRA, CNBV y Banco Central do Brasil."
+    },
+    "A3_startup_signal": {
+      "startups_found": ["vendors globales de antifraude transaccional y behavioral biometrics"],
+      "implication": "mercado_validado",
+      "notes": "La existencia de actores consolidados confirma mercado, aunque también eleva la exigencia de diferenciación."
+    },
+    "A4_media_signal": {
+      "coverage_volume": "alta",
+      "trend": "estable",
+      "notes": "El phishing, smishing y la suplantación bancaria mantienen presencia sostenida en cobertura periodística y campañas institucionales."
+    },
+    "A5_app_forum_signal": {
+      "pattern_found": "reclamos recurrentes por transferencias no reconocidas, bloqueo preventivo, soporte insuficiente o percepción de exposición frente a engaños externos",
+      "frequency": "media",
+      "notes": "La señal existe, pero debe sistematizarse con revisión explícita de apps bancarias y wallets locales."
+    },
+    "A6_academic_signal": {
+      "papers_found": "más de una línea de evidencia internacional relevante",
+      "key_finding": "El factor humano, el phishing y la ingeniería social siguen apareciendo como vectores estructurales de fraude y breach.",
+      "signal_strength": "fuerte",
+      "notes": "DBIR, IC3 y literatura de ciberseguridad sostienen la validez del problema, aun cuando LATAM tenga menor producción académica específica."
+    },
+    "desk_research_verdict": "validado",
+    "desk_research_confidence": "media",
+    "desk_research_summary": "El problema está validado a nivel secundario: existe evidencia institucional sólida, visibilidad pública persistente y señal de presupuesto en el sistema financiero. Falta, sin embargo, profundizar la cuantificación regional comparada."
+  }
+}
+```
+
+### P002. Protección de PyMEs contra BEC y fraude de transferencias
+
+```json
+{
+  "problem_id": "P002",
+  "desk_research": {
+    "A1_job_signal": {
+      "postings_found": "señal fuerte inferida",
+      "top_employers": ["empresas medianas", "MSSPs", "aseguradoras cyber"],
+      "signal_strength": "moderada",
+      "notes": "La existencia de funciones de tesorería, fraude, compliance y email security sugiere gasto real, aunque debe medirse mejor con scraping o relevamiento manual de postings."
+    },
+    "A2_regulatory_signal": {
+      "sources_found": ["IC3/FBI", "Verizon DBIR"],
+      "key_stat_or_norm": "BEC produjo aproximadamente USD 2,77 mil millones en pérdidas reportadas en 2024.",
+      "signal_strength": "fuerte",
+      "notes": "Aunque la evidencia más dura es internacional, el carácter transnacional del BEC vuelve altamente transferible la señal al contexto LATAM."
+    },
+    "A3_startup_signal": {
+      "startups_found": ["vendors de email security", "fraud prevention", "cyber insurance enablement"],
+      "implication": "mercado_validado",
+      "notes": "La inversión global en esta categoría confirma que el problema ya es reconocido por el mercado privado."
+    },
+    "A4_media_signal": {
+      "coverage_volume": "media",
+      "trend": "alza",
+      "notes": "El BEC suele recibir menos cobertura masiva que las estafas a consumidores, pero aparece con frecuencia en prensa de ciberseguridad, seguros y riesgo corporativo."
+    },
+    "A5_app_forum_signal": {
+      "pattern_found": "no aplica con igual claridad en app stores; la voz del usuario emerge más en comunidades empresariales, foros profesionales y casos compartidos por brokers o áreas de administración",
+      "frequency": "baja",
+      "notes": "La menor presencia en reviews públicas no invalida el problema; simplemente refleja que el buyer es institucional."
+    },
+    "A6_academic_signal": {
+      "papers_found": "línea robusta en reportes sectoriales y literatura de fraude organizacional",
+      "key_finding": "El pretexting y la ingeniería social siguen siendo mecanismos centrales de fraude empresarial y compromisos de pago.",
+      "signal_strength": "fuerte",
+      "notes": "La literatura y los reportes de incidentes sostienen con claridad que se trata de un problema persistente y costoso."
+    },
+    "desk_research_verdict": "validado",
+    "desk_research_confidence": "alta",
+    "desk_research_summary": "Es el problema con mejor validación secundaria del conjunto. Tiene magnitud económica clara, buyer institucional identificable y una lógica transnacional muy bien documentada."
+  }
+}
+```
+
+### P003. Protección de onboarding y retail crypto contra pig butchering y falsas inversiones
+
+```json
+{
+  "problem_id": "P003",
+  "desk_research": {
+    "A1_job_signal": {
+      "postings_found": "señal parcial",
+      "top_employers": ["exchanges", "crypto compliance teams", "blockchain intelligence firms"],
+      "signal_strength": "moderada",
+      "notes": "La expansión de funciones ligadas a compliance, transaction monitoring y fraud/risk en crypto sugiere WTP institucional creciente."
+    },
+    "A2_regulatory_signal": {
+      "sources_found": ["Interpol", "Europol"],
+      "key_stat_or_norm": "El fraude de inversión y el uso de criptoactivos en esquemas de fraude financiero ya están identificados como problema de escala internacional.",
+      "signal_strength": "moderada",
+      "notes": "La señal es fuerte a nivel global, pero todavía menos granular en estadística oficial LATAM."
+    },
+    "A3_startup_signal": {
+      "startups_found": ["blockchain intelligence", "wallet screening", "crypto compliance"],
+      "implication": "mercado_emergente",
+      "notes": "Existe mercado validado en infraestructura de riesgo, aunque la prevención centrada en manipulación del usuario retail sigue menos explotada."
+    },
+    "A4_media_signal": {
+      "coverage_volume": "alta",
+      "trend": "alza",
+      "notes": "Pig butchering, romance-investment scams y fraude cripto muestran fuerte crecimiento de cobertura en medios especializados y generalistas."
+    },
+    "A5_app_forum_signal": {
+      "pattern_found": "usuarios que reportan bloqueos, pérdidas, transferencias inducidas o advertencias tardías en plataformas crypto",
+      "frequency": "media",
+      "notes": "La señal del usuario final existe y probablemente sea muy rica en foros, Trustpilot y reviews de exchanges, aunque requiere sistematización posterior."
+    },
+    "A6_academic_signal": {
+      "papers_found": "evidencia creciente pero aún fragmentada",
+      "key_finding": "El fraude de inversión mediado por cripto y el scam-as-a-service muestran profesionalización creciente.",
+      "signal_strength": "moderada",
+      "notes": "Hay una base suficiente para sostener el problema, aunque todavía menos madura que en BEC o phishing bancario."
+    },
+    "desk_research_verdict": "parcialmente_validado",
+    "desk_research_confidence": "media",
+    "desk_research_summary": "El problema tiene una señal fuerte de crecimiento y relevancia económica, pero necesita mayor profundización en buyer específico y casuística regional para subir a validación secundaria alta."
+  }
+}
+```
+
+### P004. Protección antifraude para adultos mayores y familias cuidadoras
+
+```json
+{
+  "problem_id": "P004",
+  "desk_research": {
+    "A1_job_signal": {
+      "postings_found": "señal débil",
+      "top_employers": ["bancos", "programas de customer protection", "áreas de inclusión financiera"],
+      "signal_strength": "débil",
+      "notes": "El problema es muy visible socialmente, pero no necesariamente genera roles especializados fácilmente identificables en mercado laboral."
+    },
+    "A2_regulatory_signal": {
+      "sources_found": ["IC3/FBI", "CONDUSEF"],
+      "key_stat_or_norm": "Las pérdidas por elder fraud alcanzaron casi USD 4,9 mil millones en 2024 según IC3.",
+      "signal_strength": "fuerte",
+      "notes": "La señal estadística es clara y la afectación de adultos mayores también aparece en organismos de protección financiera."
+    },
+    "A3_startup_signal": {
+      "startups_found": ["protección senior", "family safety", "fraud protection tools"],
+      "implication": "mercado_emergente",
+      "notes": "No parece existir todavía un mercado regional consolidado, pero sí un espacio emergente donde la señal social es fuerte."
+    },
+    "A4_media_signal": {
+      "coverage_volume": "alta",
+      "trend": "estable",
+      "notes": "Las estafas a adultos mayores mantienen una presencia mediática sostenida por su gravedad humana y simbólica."
+    },
+    "A5_app_forum_signal": {
+      "pattern_found": "reclamos de familiares, miedo a operaciones no reconocidas, llamadas engañosas y sensación de desprotección",
+      "frequency": "media",
+      "notes": "La voz del usuario aparece más por relatos familiares y foros que por reviews estructuradas de producto."
+    },
+    "A6_academic_signal": {
+      "papers_found": "evidencia internacional robusta sobre vulnerabilidad y elder fraud",
+      "key_finding": "Las poblaciones mayores presentan exposición diferenciada a fraude por factores cognitivos, emocionales y digitales.",
+      "signal_strength": "fuerte",
+      "notes": "El problema es investigable y consistente, aunque la monetización sigue siendo menos nítida."
+    },
+    "desk_research_verdict": "parcialmente_validado",
+    "desk_research_confidence": "media",
+    "desk_research_summary": "La existencia y gravedad del problema están claramente validadas, pero el buyer y la estructura de gasto todavía necesitan prueba adicional."
+  }
+}
+```
+
+### P005. Educación adaptativa embebida para prevención de fraude financiero
+
+```json
+{
+  "problem_id": "P005",
+  "desk_research": {
+    "A1_job_signal": {
+      "postings_found": "señal parcial",
+      "top_employers": ["fintechs", "áreas de educación financiera", "customer success/compliance"],
+      "signal_strength": "débil",
+      "notes": "La señal laboral existe, pero no necesariamente prueba que haya presupuesto específico para educación antifraude adaptativa."
+    },
+    "A2_regulatory_signal": {
+      "sources_found": ["IC3/FBI", "Interpol"],
+      "key_stat_or_norm": "El fraude de inversión es una categoría de pérdidas masivas; sin embargo, la regulación no prueba por sí sola que la educación adaptativa sea el mecanismo de compra preferido.",
+      "signal_strength": "moderada",
+      "notes": "La señal regula el problema macro, pero no valida de forma directa este recorte específico."
+    },
+    "A3_startup_signal": {
+      "startups_found": ["edtech financiera", "embedded education modules"],
+      "implication": "sin_señal",
+      "notes": "Existen iniciativas cercanas, pero la frontera entre contenido, feature y producto sigue siendo ambigua."
+    },
+    "A4_media_signal": {
+      "coverage_volume": "media",
+      "trend": "estable",
+      "notes": "La agenda pública confirma preocupación por la falta de educación financiera, pero menos por este formato específico de solución."
+    },
+    "A5_app_forum_signal": {
+      "pattern_found": "usuarios confundidos por productos financieros, promesas de retorno y escasa claridad educativa",
+      "frequency": "media",
+      "notes": "La fricción educativa existe, pero no necesariamente se traduce en demanda explícita por una capa adaptativa independiente."
+    },
+    "A6_academic_signal": {
+      "papers_found": "evidencia sobre financial literacy y vulnerabilidad a fraude",
+      "key_finding": "La baja alfabetización financiera aumenta exposición a estafas e inversiones engañosas.",
+      "signal_strength": "moderada",
+      "notes": "El problema de base está validado, pero el recorte de mercado y buyer sigue siendo metodológicamente más débil."
+    },
+    "desk_research_verdict": "inconcluso",
+    "desk_research_confidence": "baja",
+    "desk_research_summary": "Existe evidencia sobre la vulnerabilidad, pero todavía no alcanza para sostener con seguridad que esta formulación particular del problema tenga fuerza de mercado autónoma."
+  }
+}
+```
+
+---
+
+## Tabla sintética de veredictos del Track A
+
+| Problem ID | Veredicto Track A | Confianza | Lectura sintética |
+|---|---|---|---|
+| P001 | Validado | Media | Problema real y persistente, con fuerte señal institucional y financiera. |
+| P002 | Validado | Alta | Problema muy sólido, con magnitud económica clara y buyer nítido. |
+| P003 | Parcialmente validado | Media | Fuerte señal global y de crecimiento, pero falta mayor prueba regional y comercial. |
+| P004 | Parcialmente validado | Media | Problema socialmente muy fuerte, con buyer todavía menos definido. |
+| P005 | Inconcluso | Baja | La vulnerabilidad existe, pero el framing de mercado sigue siendo débil. |
+
+---
+
+# TRACK B. User Research
+
+## Introducción metodológica del Track B
+
+El Track B traduce los cinco problemas identificados en un plan de investigación primaria ejecutable por el equipo. Su función no es complementar decorativamente el desk research, sino poner a prueba los supuestos implícitos detrás de cada formulación del problema.
+
+En línea con el enfoque de Design Research y venture validation, este track se apoya en cuatro principios:
+
+1. **No hablar de soluciones** durante el fieldwork.
+2. **Preguntar por hechos pasados**, no por opiniones hipotéticas.
+3. **Registrar contradicciones** entre lo que la persona dice que haría y lo que efectivamente hizo.
+4. **Distinguir dolor real de preocupación abstracta**.
+
+Dado que en este punto del trabajo el equipo todavía no ejecutó entrevistas sistemáticas, lo que sigue no es una síntesis de resultados, sino el **diseño completo de los instrumentos** para salir a campo correctamente.
+
+---
+
+## B1. Assumption Log por problema
+
+### P001. Prevención de phishing, smishing e ingeniería social en banca y billeteras
+
+**Supuestos críticos**
+- Los usuarios efectivamente viven episodios de manipulación previa a la operación y no solo errores de uso o fraude técnico externo.
+- Bancos y fintechs perciben este problema como un costo prevenible y no únicamente como un riesgo residual inevitable.
+- La ingeniería social previa a la transferencia es suficientemente frecuente como para justificar compra institucional.
+
+**Supuestos relevantes**
+- Los usuarios asocian el problema al banco o billetera, aunque el engaño haya ocurrido por canales externos.
+- Los equipos antifraude diferencian entre fraude transaccional clásico y fraude inducido por manipulación del cliente.
+- Los episodios ocurren en canales repetibles como WhatsApp, SMS o llamada telefónica.
+
+**Supuestos operacionales**
+- El punto de intervención más útil ocurre antes de la autorización.
+- Los clientes aceptarían fricción adicional si el riesgo fuera claro.
+
+### P002. Protección de PyMEs contra BEC y fraude de transferencias
+
+**Supuestos críticos**
+- Las PyMEs realmente experimentan o rozan episodios de cambio de cuenta, instrucciones urgentes de pago o aprobación fraudulenta.
+- El dolor económico y reputacional es suficiente para gatillar compra.
+- Las PyMEs no están bien cubiertas por sus herramientas actuales.
+
+**Supuestos relevantes**
+- Los circuitos de aprobación dependen mucho del correo o mensajería informal.
+- Un solo incidente o near miss alcanza para cambiar la percepción del riesgo.
+- Brokers de seguros y MSSPs pueden funcionar como canal de entrada.
+
+**Supuestos operacionales**
+- El buyer no es IT puro, sino administración/finanzas o dirección.
+- El problema se expresa con lenguaje operativo, no necesariamente con lenguaje de ciberseguridad.
+
+### P003. Protección de onboarding y retail crypto contra pig butchering
+
+**Supuestos críticos**
+- Exchanges y wallets perciben como problema propio las pérdidas del usuario por manipulación externa.
+- Existen casos frecuentes de usuarios inducidos a transferir fondos por vínculos de confianza o falsas promesas de inversión.
+- Hay disposición institucional a invertir en prevención previa al retiro.
+
+**Supuestos relevantes**
+- Usuarios novatos muestran patrones distinguibles de mayor vulnerabilidad.
+- Los equipos de soporte y compliance ya ven esta casuística de forma repetida.
+- El problema afecta retención, reputación y soporte, no solo losses directos.
+
+**Supuestos operacionales**
+- El momento clave de validación es previo a la salida de fondos.
+- Las plataformas aceptarían fricción adicional si reduce pérdidas y tickets complejos.
+
+### P004. Protección antifraude para adultos mayores y familias cuidadoras
+
+**Supuestos críticos**
+- Los adultos mayores o sus familias reconocen este problema como suficientemente frecuente y doloroso.
+- Las familias están dispuestas a involucrarse activamente en la prevención.
+- Existe algún buyer viable más allá de la víctima individual.
+
+**Supuestos relevantes**
+- El adulto mayor no siempre identifica el engaño hasta después del daño.
+- Familiares, bancos o cuidadores cumplen un rol real de contención o supervisión.
+- El problema emerge espontáneamente en entrevistas sin necesidad de sugerirlo demasiado.
+
+**Supuestos operacionales**
+- El canal dominante será WhatsApp, llamadas o mensajes de urgencia.
+- El lenguaje emocional será más importante que el lenguaje técnico en los relatos.
+
+### P005. Educación adaptativa embebida para prevención de fraude financiero
+
+**Supuestos críticos**
+- La falta de educación financiera no es solo una causa estructural, sino un dolor percibido por compradores institucionales.
+- Bancos, fintechs o exchanges pagarían específicamente por prevención educativa adaptativa.
+- Los usuarios no solo necesitan información, sino acompañamiento contextual en la decisión.
+
+**Supuestos relevantes**
+- El buyer cree que la educación reduce fraude, churn o reclamos.
+- Los usuarios reconocen retrospectivamente que les faltó comprensión del riesgo.
+- La educación general actual es percibida como insuficiente.
+
+**Supuestos operacionales**
+- La validación debería capturar tanto buyer institucional como usuario final.
+- El lenguaje “educativo” podría generar rechazo si no está ligado a una pérdida concreta.
+
+---
+
+## B2. Screener Design por problema
+
+### P001. Banca y billeteras
+
+**Perfil primario**  
+Responsables de fraude, customer protection, operaciones o risk en bancos, billeteras y fintechs, o usuarios que hayan sufrido un episodio reciente de suplantación con impacto financiero.
+
+**Perfil secundario**  
+Analistas de soporte, familiares de víctimas, especialistas de reclamos o customer care con contacto frecuente con casos.
+
+**Preguntas de screening**
+1. ¿Trabajás o trabajaste en los últimos 12 meses en un banco, fintech o billetera digital?
+2. ¿Tu rol involucra reclamos, fraude, operaciones o atención a incidentes?
+3. ¿Viviste o acompañaste un caso de operación financiera afectada por llamada, SMS o WhatsApp sospechoso en el último año?
+4. ¿Usás banca digital o billeteras activamente al menos una vez por semana?
+
+**Mínimo de entrevistas válidas**  
+5 primarias + 2 secundarias.
+
+**Dónde encontrarlos**
+- LinkedIn de bancos y fintechs.
+- Contactos del ecosistema fintech.
+- Comunidades de usuarios de billeteras.
+- Redes cercanas con experiencia directa en fraude digital.
+
+### P002. PyMEs y BEC
+
+**Perfil primario**  
+Dueños, CFOs, gerentes de administración/finanzas o responsables de tesorería de PyMEs de 10 a 200 empleados.
+
+**Perfil secundario**  
+Brokers de seguros cyber, estudios contables, MSSPs o personal administrativo que procese pagos.
+
+**Preguntas de screening**
+1. ¿Tu empresa realiza pagos a proveedores de manera digital al menos una vez por semana?
+2. ¿Participás o supervisás aprobaciones de pago, transferencias o validación de cuentas bancarias?
+3. ¿En los últimos 12 meses tu empresa tuvo un caso sospechoso de cambio de cuenta, instrucción urgente de pago o correo dudoso vinculado a dinero?
+4. ¿Tu empresa tiene entre 10 y 200 empleados?
+
+**Mínimo de entrevistas válidas**  
+5 primarias + 2 secundarias.
+
+**Dónde encontrarlos**
+- Cámaras PyME.
+- Estudios contables y administrativos.
+- Brokers de seguros.
+- Contactos empresariales de la red del equipo.
+
+### P003. Crypto retail y pig butchering
+
+**Perfil primario**  
+Responsables de soporte, compliance, risk o trust & safety en exchanges, wallets o fintechs con cripto; alternativamente, usuarios novatos que hayan sufrido o rozado una falsa inversión.
+
+**Perfil secundario**  
+Analistas de comunidad, moderadores, educadores crypto o especialistas de blockchain intelligence.
+
+**Preguntas de screening**
+1. ¿Trabajás en una plataforma crypto o usaste una plataforma crypto por primera vez en los últimos 24 meses?
+2. ¿Participaste en soporte, compliance o atención de casos vinculados a transferencias a terceros?
+3. ¿Conocés o viviste un caso en el que una persona enviara fondos tras recibir consejos externos de inversión?
+4. ¿Tu rol incluye contacto con usuarios o revisión de casos sospechosos?
+
+**Mínimo de entrevistas válidas**  
+5 primarias + 2 secundarias.
+
+**Dónde encontrarlos**
+- Comunidades Web3 y blockchain LATAM.
+- Contactos en exchanges y fintechs cripto.
+- Grupos de Discord/Telegram del ecosistema.
+
+### P004. Adultos mayores y familias cuidadoras
+
+**Perfil primario**  
+Adultos mayores con uso activo de cuenta bancaria o billetera digital, o familiares/cuidadores directos que acompañen su gestión financiera.
+
+**Perfil secundario**  
+Personal bancario de atención, especialistas en inclusión financiera, trabajadores sociales o cuidadores formales.
+
+**Preguntas de screening**
+1. ¿Tenés más de 65 años con cuenta bancaria activa o acompañás a alguien de más de 65 con cuenta activa?
+2. ¿Ese adulto mayor usa celular, WhatsApp o banca digital al menos ocasionalmente?
+3. ¿En el último año vivió o estuvo cerca de una situación de llamado, mensaje o pedido de dinero sospechoso?
+4. ¿Sos familiar directo, cuidador o acompañante frecuente en temas financieros?
+
+**Mínimo de entrevistas válidas**  
+5 primarias + 2 secundarias.
+
+**Dónde encontrarlos**
+- Red familiar y extendida.
+- Centros de jubilados.
+- Programas de inclusión digital.
+- Personal bancario orientado a atención senior.
+
+### P005. Educación adaptativa antifraude
+
+**Perfil primario**  
+Responsables de producto, customer success, compliance o educación financiera en fintechs, bancos y exchanges; usuarios con bajo nivel de alfabetización financiera que hayan tenido una mala experiencia de inversión o fraude.
+
+**Perfil secundario**  
+Educadores financieros, analistas de onboarding o agentes de soporte de productos complejos.
+
+**Preguntas de screening**
+1. ¿Tu rol involucra onboarding, educación al usuario, compliance o soporte en productos financieros?
+2. ¿Tu organización ofrece actualmente contenidos o advertencias educativas al usuario?
+3. ¿Conocés casos donde un usuario haya sufrido una pérdida por no entender bien el producto, el riesgo o una promesa de inversión?
+4. ¿Usaste por primera vez un producto financiero digital complejo en los últimos 24 meses?
+
+**Mínimo de entrevistas válidas**  
+5 primarias + 2 secundarias.
+
+**Dónde encontrarlos**
+- Equipos de customer success y compliance.
+- Comunidades de educación financiera.
+- Usuarios novatos de fintechs y exchanges.
+
+---
+
+## B3. Discussion Guide base para entrevistas semiestructuradas
+
+La siguiente guía funciona como protocolo general y debe adaptarse levemente a cada problema según perfil de entrevistado. La lógica es siempre la misma: abrir contexto, dejar emerger el problema, profundizar sobre un episodio y relevar workarounds sin introducir ninguna solución.
+
+### Bloque 1. Calentamiento y contexto
+- Contame cómo manejás tu plata o tus pagos en el día a día.
+- ¿Qué herramientas o canales usás más seguido?
+- ¿Qué cosas te resultan más cómodas y cuáles te generan más fricción?
+
+### Bloque 2. Exploración del territorio del problema
+- ¿En el último año tuviste alguna experiencia incómoda, rara o riesgosa relacionada con pagos, transferencias o pedidos de dinero?
+- ¿Te pasó alguna situación donde algo parecía legítimo al principio y después no tanto?
+- ¿Hay algo que hoy te haga desconfiar cuando aparece un pedido de plata, datos o aprobación?
+
+### Bloque 3. Deep dive del episodio
+- Contame exactamente qué pasó.
+- ¿Cuándo empezó esa situación?
+- ¿Cómo te contactaron o cómo apareció?
+- ¿Qué fue lo primero que pensaste?
+- ¿En qué momento te diste cuenta de que algo no cerraba?
+- ¿Qué hiciste inmediatamente después?
+- ¿A quién acudiste?
+- ¿Hubo pérdida económica, de tiempo o emocional?
+- ¿Qué cambió en tu comportamiento después de eso?
+
+### Bloque 4. Soluciones actuales y workarounds
+- ¿Qué hacés hoy para evitar que eso vuelva a pasar?
+- ¿Tu empresa / tu familia / tu banco tiene alguna forma actual de prevenirlo?
+- ¿Pagaste alguna vez por una herramienta, seguro, asesoramiento o soporte para sentirte más protegido?
+- ¿Qué te sigue faltando hoy?
+
+### Bloque 5. Cierre
+- ¿Hay algo importante sobre este tema que no te pregunté?
+- ¿Conocés a alguien que haya vivido algo parecido y que valga la pena entrevistar?
+
+### Instrucciones al entrevistador
+- No completar silencios demasiado rápido.
+- No sugerir interpretaciones.
+- No preguntar “¿usarías una app que…?” ni variantes.
+- Siempre volver al comportamiento pasado: “¿qué pasó la última vez?”.
+
+---
+
+## B4. Observation Protocol y plantilla post-entrevista
+
+Además de registrar lo dicho, el equipo debe observar:
+
+- cambios de tono, incomodidad o emoción;
+- si el problema surge espontáneamente o solo cuando se lo acerca mucho;
+- si aparecen actores inesperados;
+- si el workaround actual es sorprendentemente precario o sofisticado;
+- si la persona minimiza al inicio y amplía luego con ejemplos.
+
+### Plantilla de nota post-entrevista
+
+```text
+Fecha y duración:
+Perfil del entrevistado (sin datos personales):
+Surgió el problema espontáneamente (sí / no):
+Episodio concreto relatado (sí / no):
+Cita más relevante (parafraseada):
+Comportamiento o reacción emocional notable:
+Actor inesperado en el relato:
+Workaround actual:
+¿Pagaría por una solución? ¿Cuánto? ¿A quién?:
+Supuesto confirmado / derribado:
+Sorpresa o hallazgo no anticipado:
+```
+
+---
+
+## B5. JTBD Canvas preliminar por problema
+
+En esta instancia, el JTBD se presenta como hipótesis de trabajo preliminar que deberá ser ajustada tras las entrevistas.
+
+### P001. Banca y billeteras
+- **Situación:** recibe un mensaje o llamada que parece provenir de una entidad confiable.
+- **Motivación:** proteger su dinero y resolver rápido una supuesta urgencia.
+- **Fricción:** no distingue con claridad entre alerta legítima y manipulación.
+- **Resultado esperado:** operar con tranquilidad sin correr riesgo de caer en engaños.
+- **Ansiedades:** perder plata, bloquear la cuenta, cometer un error irreversible.
+- **Fuerzas de cambio:** haber sufrido un incidente o conocer a alguien cercano que lo sufrió.
+
+### P002. PyMEs y BEC
+- **Situación:** debe autorizar o ejecutar un pago dentro de una operación aparentemente normal.
+- **Motivación:** pagar rápido y mantener continuidad operativa sin trabar el negocio.
+- **Fricción:** no tiene suficiente visibilidad para distinguir una instrucción legítima de una manipulada.
+- **Resultado esperado:** poder confiar en que la transferencia aprobada es correcta.
+- **Ansiedades:** perder dinero, quedar expuesto frente a dirección o proveedores, generar daño reputacional.
+- **Fuerzas de cambio:** un near miss o incidente real que revele la fragilidad del procedimiento actual.
+
+### P003. Crypto retail
+- **Situación:** quiere invertir o transferir fondos siguiendo una recomendación externa que parece creíble.
+- **Motivación:** capturar una oportunidad de ganancia y actuar antes de “llegar tarde”.
+- **Fricción:** no tiene criterio suficiente para evaluar si la contraparte, la promesa o la wallet son riesgosas.
+- **Resultado esperado:** invertir sin ser manipulado ni perder fondos por engaño.
+- **Ansiedades:** perder ahorros, quedar expuesto o sentirse avergonzado por haber sido engañado.
+- **Fuerzas de cambio:** experiencia negativa propia, advertencia institucional confiable o conocimiento de un caso cercano.
+
+### P004. Adultos mayores
+- **Situación:** recibe una llamada o mensaje que apela a urgencia, familiaridad o miedo.
+- **Motivación:** ayudar rápido, proteger a un ser querido o resolver un problema percibido como grave.
+- **Fricción:** la carga emocional reduce capacidad de chequeo y verificación.
+- **Resultado esperado:** poder decidir con calma y sin quedar solo ante un evento sospechoso.
+- **Ansiedades:** perjudicar a un familiar, perder autonomía, sufrir una pérdida patrimonial irreparable.
+- **Fuerzas de cambio:** un episodio traumático propio o de alguien del entorno.
+
+### P005. Educación adaptativa
+- **Situación:** entra en contacto con un producto, promesa de inversión o señal financiera que no comprende del todo.
+- **Motivación:** tomar una buena decisión financiera y evitar quedar afuera de una oportunidad.
+- **Fricción:** carece de marco conceptual para distinguir riesgo razonable de engaño.
+- **Resultado esperado:** entender lo suficiente como para no tomar decisiones peligrosas.
+- **Ansiedades:** perder dinero, sentirse ingenuo o no saber en quién confiar.
+- **Fuerzas de cambio:** haber cometido errores previos o recibir acompañamiento contextual en el momento de decisión.
+
+---
+
+## B6. Synthesis Template para después del fieldwork
+
+Una vez que el equipo complete entrevistas y notas, la síntesis deberá producir para cada problema:
+
+1. **Mapa de patrones**: temas que aparecen en 3 o más entrevistas.
+2. **Mapa de contradicciones**: diferencia entre intención declarada y comportamiento real.
+3. **Supuestos confirmados vs derribados**.
+4. **Citas clave parafraseadas**.
+5. **Hallazgos inesperados**.
+6. **Veredicto de user research**: validado / parcialmente validado / inconcluso / invalidado.
+
+Dado que ese fieldwork todavía no se realizó, el presente entregable no adjudica hallazgos empíricos inexistentes. Lo que sí deja resuelto es la estructura exacta para que el equipo pueda salir a campo sin improvisar.
+
+---
+
+# CONVERGENCIA. Validación cruzada
+
+## Objetivo
+
+La validación cruzada busca evitar dos errores frecuentes:
+
+- sobredimensionar un problema porque tiene mucha prensa o mucha regulación, pero poco dolor real en actores concretos;
+- sobredimensionar un problema porque una o dos entrevistas fueron intensas, aunque no exista señal secundaria suficiente de escala o WTP.
+
+Por eso, el veredicto final debe surgir de la intersección entre Track A y Track B.
+
+## Matriz de convergencia aplicada
+
+| Desk Research | User Research | Veredicto final | Interpretación |
+|---|---|---|---|
+| Validado | Validado | VALIDADO (alta confianza) | El problema existe y hay señal de mercado. |
+| Validado | Parcialmente validado | VALIDADO (media confianza) | El problema existe, pero su formulación puede requerir ajuste. |
+| Parcialmente validado | Validado | VALIDADO (media confianza) | La evidencia secundaria es limitada, pero el fieldwork es contundente. |
+| Validado | Invalidado | DIVERGENCIA | Revisar formulación, muestra o framing del problema. |
+| Invalidado | Validado | DIVERGENCIA | Puede ser un mercado nuevo o mal documentado. |
+| Invalidado | Invalidado | INVALIDADO | El problema no se sostiene en la forma actual. |
+| Parcialmente validado | Inconcluso | INSUFICIENTE | Se requiere más fieldwork antes de seguir. |
+
+## Estado actual de convergencia en este entregable
+
+Como el Track B todavía no fue ejecutado, el estado actual de cada problema queda necesariamente abierto.
+
+| Problem ID | Track A | Track B | Estado actual |
+|---|---|---|---|
+| P001 | Validado | No ejecutado | Pendiente de convergencia |
+| P002 | Validado | No ejecutado | Pendiente de convergencia |
+| P003 | Parcialmente validado | No ejecutado | Pendiente de convergencia |
+| P004 | Parcialmente validado | No ejecutado | Pendiente de convergencia |
+| P005 | Inconcluso | No ejecutado | Pendiente de convergencia |
+
+---
+
+# Ranking metodológico para salir a campo
+
+Si el equipo necesita priorizar entrevistas por tiempo limitado, el orden recomendado para comenzar el user research es el siguiente:
+
+1. **P002. Protección de PyMEs contra BEC y fraude de transferencias**  
+   Es el problema con mejor señal secundaria y mayor claridad de buyer.
+
+2. **P001. Prevención de phishing/smishing e ingeniería social en banca y billeteras**  
+   Tiene alta relevancia sistémica y buena validación secundaria, pero necesita profundidad institucional y de usuario.
+
+3. **P003. Pig butchering y falsas inversiones en crypto retail**  
+   Muestra gran potencial, pero necesita confirmar mejor buyer, dolor organizacional y frecuencia regional.
+
+4. **P004. Protección de adultos mayores y familias cuidadoras**  
+   Tiene enorme fuerza social, pero requiere probar monetización y buyer real.
+
+5. **P005. Educación adaptativa embebida**  
+   Conviene dejarlo para más adelante, salvo que el fieldwork revele que el problema se formula mejor como una capa institucional de reducción de fraude y no como educación autónoma.
+
+---
+
+# Hallazgos transversales del dominio
+
+Incluso antes del fieldwork, el análisis conjunto de Fase 1, Fase 2 y Track A permite extraer algunos hallazgos transversales importantes:
+
+1. **La ingeniería social aparece como núcleo común** detrás de múltiples tipologías, incluso cuando el fraude se presenta como técnico o financiero.
+2. **La víctima individual rara vez es el mejor comprador**, por lo que la tesis de startup debe centrarse en instituciones que ya absorben costo, riesgo o reputación.
+3. **Los problemas más sólidos no son necesariamente los más conmovedores**, sino los que combinan dolor real con buyer accesible.
+4. **La señal regulatoria y la señal de pérdida económica ya existen** en varias categorías; lo que falta en algunos casos es confirmar el canal de monetización.
+5. **El user research no debe buscar validar una idea**, sino destruir supuestos falsos lo antes posible.
+
+---
+
+# Cierre metodológico
+
+Este módulo complementario deja preparado el paso metodológico que sigue naturalmente al entregable original: convertir una lista prometedora de problemas en evidencia de validación más rigurosa, con separación clara entre investigación secundaria e investigación primaria.
+
+En su estado actual, el documento permite sostener académicamente tres afirmaciones:
+
+1. **Ya existe una base sólida de desk research para priorizar problemas**.
+2. **Todavía no corresponde afirmar validación definitiva sin fieldwork**.
+3. **El equipo ya dispone de un protocolo concreto para salir a validar sin improvisación y sin sesgo excesivo de confirmación**.
+
+Dicho de otro modo, el entregable no solo identifica oportunidades: también organiza el camino correcto para demostrar, con mayor rigor, cuáles merecen convertirse en tesis y startup real.
