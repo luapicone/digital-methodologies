@@ -759,7 +759,7 @@ En línea con el enfoque de Design Research y venture validation, este track se 
 3. **Registrar contradicciones** entre lo que la persona dice que haría y lo que efectivamente hizo.
 4. **Distinguir dolor real de preocupación abstracta**.
 
-Dado que en este punto del trabajo el equipo todavía no ejecutó entrevistas sistemáticas, lo que sigue no es una síntesis de resultados, sino el **diseño completo de los instrumentos** para salir a campo correctamente.
+En este entregable el fieldwork quedó **parcialmente ejecutado para P004** mediante un relevamiento estructurado de 17 respuestas vinculadas a adultos mayores y su entorno cercano. Para los demás problemas, el Track B sigue funcionando como diseño de investigación listo para salir a campo. Por eso, esta sección combina dos niveles: **instrumentos completos para los cinco problemas** y **resultados reales ya observados en P004**.
 
 ---
 
@@ -816,18 +816,18 @@ Dado que en este punto del trabajo el equipo todavía no ejecutó entrevistas si
 ### P004. Protección antifraude para adultos mayores y familias cuidadoras
 
 **Supuestos críticos**
-- Los adultos mayores o sus familias reconocen este problema como suficientemente frecuente y doloroso.
-- Las familias están dispuestas a involucrarse activamente en la prevención.
-- Existe algún buyer viable más allá de la víctima individual.
+- **Confirmado:** el problema es reconocido como frecuente y relevante. En la muestra ejecutada, 13 de 17 personas dijeron haber escuchado sobre estas estafas “muchas veces” y 12 de 17 afirmaron conocer un caso concreto.
+- **Confirmado:** las familias aparecen como actor activo de prevención. La función más valorada fue avisar a un familiar de confianza o combinar varias funciones de alerta y acompañamiento.
+- **Parcialmente confirmado:** existe espacio para una solución, pero el buyer sigue abierto. Predomina la idea de una app independiente, aunque también aparecen banco, Estado y empresa de telefonía como oferentes posibles.
 
 **Supuestos relevantes**
-- El adulto mayor no siempre identifica el engaño hasta después del daño.
-- Familiares, bancos o cuidadores cumplen un rol real de contención o supervisión.
-- El problema emerge espontáneamente en entrevistas sin necesidad de sugerirlo demasiado.
+- **Confirmado:** la vulnerabilidad se percibe como alta. La muestra ubicó el nivel de vulnerabilidad en 4 o 5 sobre 5 en 16 de 17 respuestas, con un promedio de 4,24.
+- **Confirmado:** el problema se asocia a menor familiaridad tecnológica, miedo, confianza y urgencia emocional más que a lenguaje técnico de fraude.
+- **Confirmado:** la familia no solo aparece como contención posterior, sino como parte deseada de la solución preventiva.
 
 **Supuestos operacionales**
-- El canal dominante será WhatsApp, llamadas o mensajes de urgencia.
-- El lenguaje emocional será más importante que el lenguaje técnico en los relatos.
+- **Confirmado:** los canales que dominan el imaginario del problema son WhatsApp, mensajes de falso familiar, llamadas falsas del banco y pedidos urgentes de transferencia.
+- **Confirmado:** el lenguaje emocional es más fuerte que el técnico. Las respuestas explican la vulnerabilidad con palabras como miedo, confianza, falta de información o dificultad para distinguir mensajes reales de intentos de engaño.
 
 ### P005. Educación adaptativa embebida para prevención de fraude financiero
 
@@ -939,6 +939,16 @@ Personal bancario de atención, especialistas en inclusión financiera, trabajad
 - Centros de jubilados.
 - Programas de inclusión digital.
 - Personal bancario orientado a atención senior.
+
+**Ejecución real ya realizada para P004**
+
+Se relevó una muestra de **17 respuestas**. El perfil estuvo fuertemente concentrado en entorno cercano del adulto mayor: **7 hijos/as, 6 nietos/as, 3 familiares cercanos y 1 adulto mayor**. En todos los casos hubo vínculo o acompañamiento frecuente: 10 respondieron que ayudan “a veces” y 7 que ayudan “sí” de manera frecuente.
+
+El relevamiento confirma que el problema ya está instalado en el entorno social inmediato. Las tipologías más recordadas fueron **mensajes de falso familiar**, **estafas por WhatsApp**, **llamadas falsas del banco** y, de manera agregada, “todas las anteriores”. La percepción de herramientas actuales es débil: 11 respuestas marcaron “más o menos”, 5 “no” y solo 1 “no sé”.
+
+También aparece una señal clara de forma de solución: **13 de 17 personas dijeron que una solución sería “muy útil”**, 14 de 17 dijeron que daría tranquilidad y 10 de 17 creen que la familia la usaría. El formato preferido se concentra en **asistente por WhatsApp**, **herramienta integrada al teléfono** y **app para celular**. Esto sugiere que el problema no pide una plataforma compleja, sino un acompañamiento cotidiano, simple y cercano al canal donde ocurre el riesgo.
+
+La principal limitación metodológica de esta ejecución es que la muestra quedó sesgada hacia personas de **18 a 25 años** del entorno familiar. Por eso, los resultados validan muy bien la percepción del problema en la red de apoyo, pero todavía no sustituyen entrevistas más profundas con adultos mayores en primera persona ni con posibles buyers institucionales.
 
 ### P005. Educación adaptativa antifraude
 
@@ -1092,7 +1102,39 @@ Una vez que el equipo complete entrevistas y notas, la síntesis deberá produci
 5. **Hallazgos inesperados**.
 6. **Veredicto de user research**: validado / parcialmente validado / inconcluso / invalidado.
 
-Dado que ese fieldwork todavía no se realizó, el presente entregable no adjudica hallazgos empíricos inexistentes. Lo que sí deja resuelto es la estructura exacta para que el equipo pueda salir a campo sin improvisar.
+Para este entregable, esa síntesis ya puede aplicarse de manera preliminar a **P004** con base en la muestra relevada.
+
+### Síntesis preliminar ejecutada para P004
+
+**Mapa de patrones**
+1. La vulnerabilidad del adulto mayor es percibida como alta y sostenida: 16 de 17 respuestas la ubicaron en 4 o 5 sobre 5.
+2. El problema se expresa sobre todo en canales cotidianos: WhatsApp, mensajes de falso familiar, llamadas falsas del banco y pedidos urgentes.
+3. La solución más valorada no es solo “informar”, sino **alertar y conectar con un familiar de confianza**.
+4. El daño no se reduce a la pérdida económica: aparecen también angustia emocional, miedo y afectación general del entorno familiar.
+5. La familia aparece como actor central tanto para detectar riesgo como para intervenir.
+
+**Mapa de contradicciones**
+- El problema se percibe como muy serio y una solución como muy útil, pero la disposición de pago todavía es ambigua: 5 respuestas dijeron sí, 7 tal vez y 5 no.
+- La mayoría cree que el adulto mayor usaría la herramienta, pero la muestra concreta está mucho más representada por hijos/as y nietos/as que por adultos mayores en primera persona.
+
+**Supuestos confirmados vs derribados**
+- **Confirmados:** frecuencia percibida del problema, centralidad de WhatsApp y la urgencia emocional, rol activo de la familia, percepción de insuficiencia de herramientas actuales.
+- **Parcialmente confirmados:** existencia de un buyer claro y monetización directa.
+- **No derribado, pero pendiente:** el uso sostenido por adultos mayores sin mediación familiar.
+
+**Citas clave parafraseadas**
+- “No saben diferenciar un mensaje real de una estafa por falta de conocimiento tecnológico.”
+- “Les dicen algo cercano o familiar y ya creen que es verdad.”
+- “Sería útil que avise a un familiar y bloquee o frene acciones hasta verificar.”
+
+**Hallazgos inesperados**
+- La red familiar pesa más de lo esperado en la propuesta de valor. No aparece solo como apoyo posterior al daño, sino como componente preventivo central.
+- La solución ideal no surge como una app aislada y sofisticada, sino como algo integrado al teléfono o a WhatsApp, con mínima fricción.
+
+**Veredicto preliminar de user research para P004**
+**Validado (media confianza).** El problema aparece con fuerza en la muestra y la propuesta de prevención tiene sentido para los encuestados. La confianza todavía es media porque la muestra es pequeña, joven y más representativa del entorno familiar que del adulto mayor en primera persona.
+
+Para los demás problemas, el presente entregable sigue dejando resuelta la estructura exacta para salir a campo sin improvisar.
 
 ---
 
@@ -1121,14 +1163,14 @@ Por eso, el veredicto final debe surgir de la intersección entre Track A y Trac
 
 ## Estado actual de convergencia en este entregable
 
-Como el Track B todavía no fue ejecutado, el estado actual de cada problema queda necesariamente abierto.
+El Track B sigue pendiente para P001, P002, P003 y P005. En cambio, **P004 ya cuenta con una primera ejecución de user research**, por lo que la convergencia puede actualizarse parcialmente.
 
 | Problem ID | Track A | Track B | Estado actual |
 |---|---|---|---|
 | P001 | Validado | No ejecutado | Pendiente de convergencia |
 | P002 | Validado | No ejecutado | Pendiente de convergencia |
 | P003 | Parcialmente validado | No ejecutado | Pendiente de convergencia |
-| P004 | Parcialmente validado | No ejecutado | Pendiente de convergencia |
+| P004 | Parcialmente validado | Validado (media confianza) | VALIDADO (media confianza) |
 | P005 | Inconcluso | No ejecutado | Pendiente de convergencia |
 
 ---
@@ -1147,7 +1189,7 @@ Si el equipo necesita priorizar entrevistas por tiempo limitado, el orden recome
    Muestra gran potencial, pero necesita confirmar mejor buyer, dolor organizacional y frecuencia regional.
 
 4. **P004. Protección de adultos mayores y familias cuidadoras**  
-   Tiene enorme fuerza social, pero requiere probar monetización y buyer real.
+   Ya mostró validación primaria inicial en entorno familiar y alta percepción de utilidad, pero todavía requiere profundizar buyer, monetización y adopción directa por parte del adulto mayor.
 
 5. **P005. Educación adaptativa embebida**  
    Conviene dejarlo para más adelante, salvo que el fieldwork revele que el problema se formula mejor como una capa institucional de reducción de fraude y no como educación autónoma.
@@ -1156,13 +1198,14 @@ Si el equipo necesita priorizar entrevistas por tiempo limitado, el orden recome
 
 # Hallazgos transversales del dominio
 
-Incluso antes del fieldwork, el análisis conjunto de Fase 1, Fase 2 y Track A permite extraer algunos hallazgos transversales importantes:
+Con Fase 1, Fase 2, Track A y la primera ejecución de Track B sobre P004, ya pueden extraerse algunos hallazgos transversales importantes:
 
 1. **La ingeniería social aparece como núcleo común** detrás de múltiples tipologías, incluso cuando el fraude se presenta como técnico o financiero.
 2. **La víctima individual rara vez es el mejor comprador**, por lo que la tesis de startup debe centrarse en instituciones que ya absorben costo, riesgo o reputación.
 3. **Los problemas más sólidos no son necesariamente los más conmovedores**, sino los que combinan dolor real con buyer accesible.
-4. **La señal regulatoria y la señal de pérdida económica ya existen** en varias categorías; lo que falta en algunos casos es confirmar el canal de monetización.
-5. **El user research no debe buscar validar una idea**, sino destruir supuestos falsos lo antes posible.
+4. **En P004, la familia emerge como usuario y red de contención**, no solo como actor secundario. Eso cambia el framing del producto: no sería solo protección para adultos mayores, sino protección compartida.
+5. **La señal regulatoria y la señal de pérdida económica ya existen** en varias categorías; lo que falta en algunos casos es confirmar el canal de monetización.
+6. **El user research útil no valida soluciones abstractas, sino puntos concretos de fricción.** En la muestra de P004, el valor no aparece en “más educación”, sino en alertar, acompañar y escalar a un vínculo de confianza.
 
 ---
 
@@ -1170,10 +1213,11 @@ Incluso antes del fieldwork, el análisis conjunto de Fase 1, Fase 2 y Track A p
 
 Este módulo complementario deja preparado el paso metodológico que sigue naturalmente al entregable original: convertir una lista prometedora de problemas en evidencia de validación más rigurosa, con separación clara entre investigación secundaria e investigación primaria.
 
-En su estado actual, el documento permite sostener académicamente tres afirmaciones:
+En su estado actual, el documento permite sostener académicamente cuatro afirmaciones:
 
 1. **Ya existe una base sólida de desk research para priorizar problemas**.
-2. **Todavía no corresponde afirmar validación definitiva sin fieldwork**.
-3. **El equipo ya dispone de un protocolo concreto para salir a validar sin improvisación y sin sesgo excesivo de confirmación**.
+2. **P004 ya cuenta con una primera validación primaria de campo, aunque todavía parcial**.
+3. **Todavía no corresponde afirmar validación definitiva para el resto sin fieldwork**.
+4. **El equipo ya dispone de un protocolo concreto para salir a validar sin improvisación y sin sesgo excesivo de confirmación**.
 
-Dicho de otro modo, el entregable no solo identifica oportunidades: también organiza el camino correcto para demostrar, con mayor rigor, cuáles merecen convertirse en tesis y startup real.
+Dicho de otro modo, el entregable no solo identifica oportunidades: también empieza a discriminar, con evidencia primaria real, cuáles merecen seguir avanzando como tesis y startup real.
