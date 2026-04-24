@@ -44,6 +44,14 @@ data class AnalysisResultUi(
 )
 
 @Immutable
+data class NumberCheckResultUi(
+    val riskLabel: String,
+    val riskColor: String,
+    val detail: String,
+    val suggestedActions: List<String>,
+)
+
+@Immutable
 data class HistoryEventUi(
     val id: String = UUID.randomUUID().toString(),
     val type: EventType,
@@ -273,6 +281,44 @@ fun analyzeMessage(input: String): AnalysisResultUi {
             signals = if (signals.isEmpty()) listOf("Sin señales fuertes detectadas") else signals,
             recommendation = "No se detectaron señales fuertes, pero si algo te incomoda conviene verificar antes de actuar.",
             suggestedActions = listOf("Seguir con atención", "Verificar si hay dudas"),
+        )
+    }
+}
+
+fun evaluatePhoneNumber(input: String): NumberCheckResultUi {
+    val normalized = input.filter { it.isDigit() || it == '+' }
+    val knownRiskNumbers = setOf("+541150000001", "+541150000002", "08003452789", "1133334444")
+
+    return when {
+        normalized.isBlank() -> NumberCheckResultUi(
+            riskLabel = "Sin datos",
+            riskColor = "warning",
+            detail = "Ingresá un número para evaluar si conviene desconfiar o verificar por otro medio.",
+            suggestedActions = listOf("Ingresar número", "Verificar antes de actuar"),
+        )
+        knownRiskNumbers.contains(normalized) -> NumberCheckResultUi(
+            riskLabel = "Número muy riesgoso",
+            riskColor = "danger",
+            detail = "Este número coincide con una base mock de números reportados o extremadamente sospechosos dentro del MVP.",
+            suggestedActions = listOf("No devolver la llamada", "No compartir datos", "Avisar a contacto de confianza"),
+        )
+        normalized.startsWith("0800") -> NumberCheckResultUi(
+            riskLabel = "Verificar identidad",
+            riskColor = "warning",
+            detail = "Los números tipo 0800 no son necesariamente peligrosos, pero tampoco prueban legitimidad. Si dicen ser del banco, verificá por un canal oficial.",
+            suggestedActions = listOf("Cortar y llamar al canal oficial", "No compartir códigos"),
+        )
+        normalized.length < 8 -> NumberCheckResultUi(
+            riskLabel = "Número incompleto",
+            riskColor = "warning",
+            detail = "El número parece incompleto o mal formateado. Conviene revisarlo antes de sacar conclusiones.",
+            suggestedActions = listOf("Revisar número", "No actuar todavía"),
+        )
+        else -> NumberCheckResultUi(
+            riskLabel = "Sin señales fuertes",
+            riskColor = "safe",
+            detail = "No hubo coincidencia con la base mock de números riesgosos. Igual conviene desconfiar si hubo urgencia, pedido de dinero o solicitud de códigos.",
+            suggestedActions = listOf("Escuchar con cuidado", "Verificar si hubo presión o urgencia"),
         )
     }
 }

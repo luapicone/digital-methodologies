@@ -132,6 +132,9 @@ fun ProteccionAntiestafasApp(initialSharedText: String?, viewModel: AppViewModel
         composable(Screen.CallCheck.route) {
             CallCheckScreen(navController = navController, onRegister = viewModel::registerCallCheck)
         }
+        composable(Screen.NumberCheck.route) {
+            NumberCheckScreen(navController = navController)
+        }
     }
 }
 
@@ -237,6 +240,11 @@ private fun HomeScreen(navController: NavHostController, state: AppUiState, acti
             item {
                 PrimaryActionCard("Chequeo post-llamada", "Si una llamada te apuró o te pidió dinero, revisala antes de actuar.") {
                     navController.navigate(Screen.CallCheck.route)
+                }
+            }
+            item {
+                PrimaryActionCard("Verificar número", "Ingresá un número para revisar si coincide con señales de riesgo dentro del MVP.") {
+                    navController.navigate(Screen.NumberCheck.route)
                 }
             }
             item {
@@ -567,6 +575,44 @@ private fun CallCheckScreen(navController: NavHostController, onRegister: (Strin
 }
 
 @Composable
+@Composable
+private fun NumberCheckScreen(navController: NavHostController) {
+    var number by rememberSaveable { mutableStateOf("") }
+    var result by remember { mutableStateOf<NumberCheckResultUi?>(null) }
+
+    AppScaffold(title = "Verificar número") { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+        ) {
+            HeroCard(
+                title = "Chequeo rápido de número",
+                body = "Este módulo usa una base mock local. Sirve para demostrar el flujo de reputación de llamadas dentro del MVP.",
+            )
+            OutlinedTextField(
+                value = number,
+                onValueChange = { number = it },
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text("Número telefónico") },
+                singleLine = true,
+            )
+            Button(onClick = { result = evaluatePhoneNumber(number) }, modifier = Modifier.fillMaxWidth()) {
+                Text("Evaluar número")
+            }
+            result?.let { numberResult ->
+                NumberCheckCard(numberResult)
+            }
+            OutlinedButton(onClick = { navController.popBackStack() }, modifier = Modifier.fillMaxWidth()) {
+                Text("Volver")
+            }
+        }
+    }
+}
+
+@Composable
 private fun HeroCard(title: String, body: String) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -631,6 +677,28 @@ private fun AnalysisCard(analysis: AnalysisResultUi) {
             analysis.signals.forEach { Text("• $it") }
             Text("Recomendación", fontWeight = FontWeight.SemiBold)
             Text(analysis.recommendation)
+        }
+    }
+}
+
+@Composable
+private fun NumberCheckCard(result: NumberCheckResultUi) {
+    val accent = when (result.riskColor) {
+        "danger" -> Danger
+        "warning" -> Warning
+        else -> Success
+    }
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = accent.copy(alpha = 0.14f)),
+        shape = RoundedCornerShape(24.dp),
+    ) {
+        Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text(result.riskLabel, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+            Text(result.detail)
+            Text("Acciones sugeridas", fontWeight = FontWeight.SemiBold)
+            result.suggestedActions.forEach { Text("• $it") }
         }
     }
 }
