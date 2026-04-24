@@ -2,6 +2,7 @@ package com.luapicone.proteccionantiestafas.ui
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
+import com.luapicone.proteccionantiestafas.data.AppStorage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -95,33 +96,33 @@ data class AppUiState(
 )
 
 class AppViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(AppUiState())
+    private val _uiState = MutableStateFlow(AppStorage.loadState() ?: AppUiState())
     val uiState: StateFlow<AppUiState> = _uiState.asStateFlow()
 
     fun updateOnboardingName(value: String) {
-        _uiState.update { it.copy(onboarding = it.onboarding.copy(name = value)) }
+        mutate { it.copy(onboarding = it.onboarding.copy(name = value)) }
     }
 
     fun updateOnboardingLevel(level: InterventionLevel) {
-        _uiState.update { it.copy(onboarding = it.onboarding.copy(interventionLevel = level)) }
+        mutate { it.copy(onboarding = it.onboarding.copy(interventionLevel = level)) }
     }
 
     fun nextOnboardingStep() {
-        _uiState.update { state ->
+        mutate { state ->
             val nextStep = (state.onboarding.step + 1).coerceAtMost(2)
             state.copy(onboarding = state.onboarding.copy(step = nextStep))
         }
     }
 
     fun previousOnboardingStep() {
-        _uiState.update { state ->
+        mutate { state ->
             val nextStep = (state.onboarding.step - 1).coerceAtLeast(0)
             state.copy(onboarding = state.onboarding.copy(step = nextStep))
         }
     }
 
     fun completeOnboarding() {
-        _uiState.update { state ->
+        mutate { state ->
             state.copy(
                 isOnboardingCompleted = true,
                 userName = state.onboarding.name.ifBlank { "Usuario" },
@@ -132,7 +133,7 @@ class AppViewModel : ViewModel() {
 
     fun addOrUpdateContact(name: String, phone: String, relationship: String) {
         if (name.isBlank() || phone.isBlank() || relationship.isBlank()) return
-        _uiState.update { state ->
+        mutate { state ->
             val newContact = TrustedContactUi(name = name, phone = phone, relationship = relationship)
             val updatedContacts = (state.contacts + newContact).takeLast(2)
             state.copy(contacts = updatedContacts, selectedContactId = newContact.id)
@@ -140,27 +141,27 @@ class AppViewModel : ViewModel() {
     }
 
     fun selectContact(contactId: String) {
-        _uiState.update { it.copy(selectedContactId = contactId) }
+        mutate { it.copy(selectedContactId = contactId) }
     }
 
     fun updateInterventionLevel(level: InterventionLevel) {
-        _uiState.update { it.copy(interventionLevel = level) }
+        mutate { it.copy(interventionLevel = level) }
     }
 
     fun updateNotifications(enabled: Boolean) {
-        _uiState.update { it.copy(settings = it.settings.copy(notificationsEnabled = enabled)) }
+        mutate { it.copy(settings = it.settings.copy(notificationsEnabled = enabled)) }
     }
 
     fun updateSuggestContact(enabled: Boolean) {
-        _uiState.update { it.copy(settings = it.settings.copy(suggestContactOnHighRisk = enabled)) }
+        mutate { it.copy(settings = it.settings.copy(suggestContactOnHighRisk = enabled)) }
     }
 
     fun updateCallWarnings(enabled: Boolean) {
-        _uiState.update { it.copy(settings = it.settings.copy(showCallWarnings = enabled)) }
+        mutate { it.copy(settings = it.settings.copy(showCallWarnings = enabled)) }
     }
 
     fun updateSharedAnalysis(enabled: Boolean) {
-        _uiState.update { it.copy(settings = it.settings.copy(allowSharedTextAnalysis = enabled)) }
+        mutate { it.copy(settings = it.settings.copy(allowSharedTextAnalysis = enabled)) }
     }
 
     fun registerMessageAnalysis(result: AnalysisResultUi) {
@@ -198,7 +199,7 @@ class AppViewModel : ViewModel() {
     }
 
     fun updateFilter(type: EventType?) {
-        _uiState.update { it.copy(activeFilter = type) }
+        mutate { it.copy(activeFilter = type) }
     }
 
     fun activeContact(state: AppUiState = _uiState.value): TrustedContactUi? {
@@ -207,8 +208,16 @@ class AppViewModel : ViewModel() {
     }
 
     private fun appendHistory(event: HistoryEventUi) {
-        _uiState.update { state ->
+        mutate { state ->
             state.copy(recentEvents = listOf(event) + state.recentEvents)
+        }
+    }
+
+    private fun mutate(transform: (AppUiState) -> AppUiState) {
+        _uiState.update { current ->
+            transform(current).also { updated ->
+                AppStorage.saveState(updated)
+            }
         }
     }
 }

@@ -26,6 +26,8 @@ Proyecto Android nativo del MVP antiestafas.
 - configuración con toggles reales en estado
 - chequeo post-llamada
 - historial con tipos de evento y filtros
+- persistencia local básica con SharedPreferences
+- acciones reales para abrir WhatsApp o SMS hacia contacto de confianza
 
 ## Qué todavía falta para una versión productiva
 - persistencia real local (Room / DataStore)
@@ -37,3 +39,6 @@ Proyecto Android nativo del MVP antiestafas.
 
 ## Nota técnica
 La app está planteada como MVP demostrable y local. No promete todavía integración profunda con WhatsApp ni escucha de audio de llamadas en tiempo real.
+
+## Estado de terminación
+Dentro de este repo, la app quedó avanzada hasta un MVP demo funcional local. Lo siguiente ya sería validación en Android Studio, corrección de compatibilidad sobre dispositivo/emulador y luego integraciones más profundas con Android.

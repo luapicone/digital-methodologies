@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.weight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -45,6 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -56,6 +58,8 @@ import com.luapicone.proteccionantiestafas.ui.theme.Navy700
 import com.luapicone.proteccionantiestafas.ui.theme.Orange500
 import com.luapicone.proteccionantiestafas.ui.theme.Success
 import com.luapicone.proteccionantiestafas.ui.theme.Warning
+import android.content.Intent
+import android.net.Uri
 
 @Composable
 fun ProteccionAntiestafasApp(initialSharedText: String?, viewModel: AppViewModel = viewModel()) {
@@ -325,6 +329,8 @@ private fun HelpScreen(
     activeContact: TrustedContactUi?,
     onHelpTriggered: () -> Unit,
 ) {
+    val context = LocalContext.current
+
     AppScaffold(title = "Pedir ayuda") { padding ->
         Column(
             modifier = Modifier
@@ -340,8 +346,22 @@ private fun HelpScreen(
             activeContact?.let {
                 FeatureCard(it.name, "${it.relationship} · ${it.phone}")
             }
-            Button(onClick = onHelpTriggered, modifier = Modifier.fillMaxWidth()) { Text("Enviar alerta por WhatsApp") }
-            OutlinedButton(onClick = onHelpTriggered, modifier = Modifier.fillMaxWidth()) { Text("Enviar alerta por SMS") }
+            Button(onClick = {
+                onHelpTriggered()
+                val message = Uri.encode("Necesito ayuda. Recibí una situación sospechosa y quiero verificar antes de actuar.")
+                val phone = activeContact?.phone?.filter { it.isDigit() || it == '+' } ?: ""
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/${phone.replace("+", "")}?text=$message"))
+                context.startActivity(intent)
+            }, modifier = Modifier.fillMaxWidth()) { Text("Enviar alerta por WhatsApp") }
+            OutlinedButton(onClick = {
+                onHelpTriggered()
+                val phone = activeContact?.phone ?: ""
+                val intent = Intent(Intent.ACTION_SENDTO).apply {
+                    data = Uri.parse("smsto:$phone")
+                    putExtra("sms_body", "Necesito ayuda. Recibí una situación sospechosa y quiero verificar antes de actuar.")
+                }
+                context.startActivity(intent)
+            }, modifier = Modifier.fillMaxWidth()) { Text("Enviar alerta por SMS") }
             OutlinedButton(onClick = { navController.popBackStack() }, modifier = Modifier.fillMaxWidth()) { Text("Volver") }
         }
     }
