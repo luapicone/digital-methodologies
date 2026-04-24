@@ -26,6 +26,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -141,10 +143,12 @@ fun ProteccionAntiestafasApp(initialSharedText: String?, viewModel: AppViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppScaffold(title: String, content: @Composable (PaddingValues) -> Unit) {
+    val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(title) })
         },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         containerColor = MaterialTheme.colorScheme.background,
         content = content,
     )
@@ -248,6 +252,9 @@ private fun HomeScreen(navController: NavHostController, state: AppUiState, acti
                 }
             }
             item {
+                FeatureCard("Preparación Android real", "El proyecto ya incluye receiver de estado de llamada y una capa mock de riesgo de número para acercar el MVP al comportamiento real de Android.")
+            }
+            item {
                 PrimaryActionCard("Pedir ayuda", "Escalá rápido a un contacto de confianza sin quedarte solo frente a la duda.") {
                     navController.navigate(Screen.Help.route)
                 }
@@ -291,6 +298,11 @@ private fun AnalyzeMessageScreen(
         ) {
             item {
                 Text("Pegá el mensaje completo o compartilo desde otra app. La evaluación es local y sirve como ayuda, no como verdad absoluta.")
+            }
+            if (!initialSharedText.isNullOrBlank()) {
+                item {
+                    FeatureCard("Texto compartido detectado", "La app recibió contenido desde otra aplicación y lo dejó precargado para analizar.")
+                }
             }
             item {
                 OutlinedTextField(
