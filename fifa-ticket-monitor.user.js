@@ -26,6 +26,7 @@
     lastAlertKey: '',
     selectedLabelHint: '',
     watchPrices: '60,350',
+    watchPairs: 'Categoría 4:60,Categoría 3:350',
   };
 
   const state = {
@@ -59,6 +60,7 @@
       lastAlertKey: GM_getValue('lastAlertKey', DEFAULTS.lastAlertKey),
       selectedLabelHint: GM_getValue('selectedLabelHint', DEFAULTS.selectedLabelHint),
       watchPrices: GM_getValue('watchPrices', DEFAULTS.watchPrices),
+      watchPairs: GM_getValue('watchPairs', DEFAULTS.watchPairs),
     };
   }
 
@@ -185,6 +187,10 @@
           Precios a vigilar (coma separada)
           <input id="max-watch-prices" type="text" placeholder="Ej: 60,350" />
         </label>
+        <label>
+          Reglas categoría:precio
+          <input id="max-watch-pairs" type="text" placeholder="Ej: Categoría 4:60,Categoría 3:350" />
+        </label>
         <div class="row">
           <label>
             Modo
@@ -229,11 +235,13 @@
     document.getElementById('max-webhook-url').value = state.config.webhookUrl;
     document.getElementById('max-label-hint').value = state.config.selectedLabelHint;
     document.getElementById('max-watch-prices').value = state.config.watchPrices;
+    document.getElementById('max-watch-pairs').value = state.config.watchPairs;
   }
 
   function saveFromPanel() {
     state.config.targetPrice = Number(document.getElementById('max-target-price').value || 0);
     state.config.watchPrices = document.getElementById('max-watch-prices').value.trim() || DEFAULTS.watchPrices;
+    state.config.watchPairs = document.getElementById('max-watch-pairs').value.trim() || DEFAULTS.watchPairs;
     state.config.priceMode = document.getElementById('max-price-mode').value;
     state.config.refreshSeconds = Math.max(5, Number(document.getElementById('max-refresh-seconds').value || 10));
     state.config.webhookUrl = document.getElementById('max-webhook-url').value.trim();
@@ -318,7 +326,7 @@
       const price = extractPrice(rawText);
       if (price == null) continue;
       if (!matchesLabelHint(label, rawText)) continue;
-      if (!matchesTargetPrice(price)) continue;
+      if (!matchesTargetPrice(price, label)) continue;
 
       const unavailable = /actualmente\s+no\s+disponible/i.test(rawText);
       if (unavailable) continue;
@@ -350,6 +358,21 @@
     return target.includes(hint);
   }
 
+  function parseWatchPairs() {
+    return String(state.config.watchPairs || '')
+      .split(',')
+      .map((chunk) => chunk.trim())
+      .filter(Boolean)
+      .map((chunk) => {
+        const [label, price] = chunk.split(':');
+        return {
+          label: (label || '').trim().toLowerCase(),
+          price: Number((price || '').trim()),
+        };
+      })
+      .filter((item) => item.label && Number.isFinite(item.price) && item.price > 0);
+  }
+
   function parseWatchPrices() {
     return String(state.config.watchPrices || '')
       .split(',')
@@ -357,10 +380,15 @@
       .filter((value) => Number.isFinite(value) && value > 0);
   }
 
-  function matchesTargetPrice(price) {
+  function matchesTargetPrice(price, label = '') {
     const target = Number(state.config.targetPrice || 0);
     const watchPrices = parseWatchPrices();
+    const watchPairs = parseWatchPairs();
     if (state.config.priceMode === 'watchlist') {
+      if (watchPairs.length) {
+        const normalizedLabel = String(label || '').toLowerCase();
+        return watchPairs.some((pair) => pair.price === price && normalizedLabel.includes(pair.label));
+      }
       return watchPrices.length ? watchPrices.includes(price) : true;
     }
     if (!target) return true;
@@ -416,6 +444,7 @@
       `**Precio:** ${best.priceText}`,
       `**Zona/label:** ${best.label}`,
       `**Precios vigilados:** ${parseWatchPrices().join(', ') || 'sin filtro'}`,
+      `**Reglas categoría/precio:** ${state.config.watchPairs || 'sin reglas específicas'}`,
       `**URL:** ${location.href}`,
       '',
       `Coincidencias encontradas: ${all.length}`,
