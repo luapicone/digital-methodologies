@@ -6,7 +6,8 @@ Monitor de navegador para FIFA Tickets pensado para correr sobre **tu propia ses
 
 - corre dentro de la página en tu navegador
 - deja configurar un **precio objetivo**
-- permite modo **precio máximo** o **precio exacto**
+- permite modo **lista exacta**, **precio máximo** o **precio exacto**
+- por defecto vigila específicamente precios **60** y **350** USD
 - refresca la pestaña cada `N` segundos, por defecto `10`
 - intenta detectar bloques con precio y botón de compra
 - avisa con:
@@ -42,6 +43,7 @@ Usar **Tampermonkey** en Chrome/Edge.
 2. En la esquina inferior derecha aparece el panel `FIFA Ticket Monitor`.
 3. Configurá:
    - `Precio objetivo`
+   - `Precios a vigilar` (por defecto `60,350`)
    - `Modo`
    - `Refresh`
    - `Webhook Discord`
@@ -54,6 +56,7 @@ Usar **Tampermonkey** en Chrome/Edge.
 - primero probalo sin webhook
 - después agregá el webhook
 - si la web muestra varias zonas, usá el filtro de texto para reducir ruido
+- esta v2 está ajustada a la pantalla de filas como `Categoría 1/2/3/4` y estado `Actualmente no disponible`
 - si la página cambia el HTML, probablemente haya que retocar selectores
 
 ## Webhook Discord
@@ -66,8 +69,10 @@ Formato esperado:
 
 ## Notas técnicas
 
-El script intenta encontrar:
-- botones con texto tipo `comprar`, `buy`, `seleccionar`, `agregar`
-- contenedores cercanos con texto de precio como `USD 120`, `US$ 120` o `$120`
+El script intenta encontrar filas con texto tipo:
+- `Categoría 1`, `Categoría 2`, `Categoría 3`, `Categoría 4`
+- `Zona ...`
+- precio tipo `From 60.00 USD` o `From 350.00 USD`
+- y descarta filas que sigan mostrando `Actualmente no disponible`
 
-Es una heurística razonable para empezar, pero seguramente haya que ajustarla contra el DOM real de FIFA Tickets si querés que quede más fino.
+Esta v2 quedó ajustada específicamente a la captura real compartida para FIFA Tickets.

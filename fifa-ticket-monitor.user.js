@@ -20,32 +20,12 @@
   const DEFAULTS = {
     enabled: false,
     refreshSeconds: 10,
-    priceMode: 'max',
+    priceMode: 'watchlist',
     targetPrice: 0,
     webhookUrl: '',
     lastAlertKey: '',
     selectedLabelHint: '',
-  };
-
-  const selectors = {
-    buyButtons: [
-      'button[data-testid*="buy"]',
-      'button[data-testid*="add"]',
-      'button[class*="buy"]',
-      'button[class*="add"]',
-      'button',
-      'a[role="button"]',
-    ],
-    priceContainers: [
-      '[data-testid*="price"]',
-      '[class*="price"]',
-      '[class*="ticket"]',
-      '[class*="offer"]',
-      '[class*="seat"]',
-      'article',
-      'li',
-      'div',
-    ],
+    watchPrices: '60,350',
   };
 
   const state = {
@@ -78,6 +58,7 @@
       webhookUrl: GM_getValue('webhookUrl', DEFAULTS.webhookUrl),
       lastAlertKey: GM_getValue('lastAlertKey', DEFAULTS.lastAlertKey),
       selectedLabelHint: GM_getValue('selectedLabelHint', DEFAULTS.selectedLabelHint),
+      watchPrices: GM_getValue('watchPrices', DEFAULTS.watchPrices),
     };
   }
 
@@ -200,10 +181,15 @@
           Precio objetivo
           <input id="max-target-price" type="number" min="0" step="1" placeholder="Ej: 120" />
         </label>
+        <label>
+          Precios a vigilar (coma separada)
+          <input id="max-watch-prices" type="text" placeholder="Ej: 60,350" />
+        </label>
         <div class="row">
           <label>
             Modo
             <select id="max-price-mode">
+              <option value="watchlist">Lista exacta</option>
               <option value="max">Precio máximo</option>
               <option value="exact">Precio exacto</option>
             </select>
@@ -242,10 +228,12 @@
     document.getElementById('max-refresh-seconds').value = state.config.refreshSeconds;
     document.getElementById('max-webhook-url').value = state.config.webhookUrl;
     document.getElementById('max-label-hint').value = state.config.selectedLabelHint;
+    document.getElementById('max-watch-prices').value = state.config.watchPrices;
   }
 
   function saveFromPanel() {
     state.config.targetPrice = Number(document.getElementById('max-target-price').value || 0);
+    state.config.watchPrices = document.getElementById('max-watch-prices').value.trim() || DEFAULTS.watchPrices;
     state.config.priceMode = document.getElementById('max-price-mode').value;
     state.config.refreshSeconds = Math.max(5, Number(document.getElementById('max-refresh-seconds').value || 10));
     state.config.webhookUrl = document.getElementById('max-webhook-url').value.trim();
@@ -316,25 +304,32 @@
   }
 
   function scanPageForCandidates() {
-    const allButtons = uniqueElements(selectors.buyButtons.flatMap((selector) => Array.from(document.querySelectorAll(selector))));
+    const blocks = Array.from(document.querySelectorAll('div, li, article'));
     const candidates = [];
+    const seen = new Set();
 
-    for (const button of allButtons) {
-      const text = cleanText(button.textContent);
-      if (!looksLikeBuyButton(text)) continue;
+    for (const block of blocks) {
+      const rawText = cleanText(block.innerText || '');
+      if (!rawText) continue;
+      if (!/categor/i.test(rawText) && !/zona/i.test(rawText)) continue;
+      if (!/(usd|us\$|\$)/i.test(rawText)) continue;
 
-      const container = findNearestContainer(button);
-      const rawText = cleanText(container?.innerText || button.innerText || '');
+      const label = extractRowLabel(rawText);
       const price = extractPrice(rawText);
       if (price == null) continue;
-
-      const label = deriveLabel(container, button, rawText);
       if (!matchesLabelHint(label, rawText)) continue;
       if (!matchesTargetPrice(price)) continue;
 
+      const unavailable = /actualmente\s+no\s+disponible/i.test(rawText);
+      if (unavailable) continue;
+
+      const key = `${label}|${price}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+
       candidates.push({
         price,
-        priceText: `$${price}`,
+        priceText: `USD ${price}`,
         label,
         contextText: rawText.slice(0, 320),
       });
@@ -343,29 +338,9 @@
     return candidates.sort((a, b) => a.price - b.price);
   }
 
-  function uniqueElements(list) {
-    return Array.from(new Set(list));
-  }
-
-  function looksLikeBuyButton(text) {
-    const normalized = text.toLowerCase();
-    return ['comprar', 'buy', 'seleccionar', 'add to cart', 'agregar'].some((token) => normalized.includes(token));
-  }
-
-  function findNearestContainer(button) {
-    let node = button;
-    for (let i = 0; i < 6 && node; i += 1) {
-      const text = cleanText(node.innerText || '');
-      if (extractPrice(text) != null) return node;
-      node = node.parentElement;
-    }
-    return button.parentElement || button;
-  }
-
-  function deriveLabel(container, button, rawText) {
-    const heading = container?.querySelector('h1,h2,h3,h4,strong,b,[class*="title"],[class*="label"]');
-    const label = cleanText(heading?.textContent || button.textContent || rawText);
-    return label.slice(0, 120) || 'Entrada detectada';
+  function extractRowLabel(rawText) {
+    const match = rawText.match(/(categor[ií]a\s*\d+|zona[^\n]*|last\s*minute\s*sales[^\n]*)/i);
+    return cleanText(match?.[1] || rawText.split(' From ')[0] || rawText).slice(0, 120) || 'Entrada detectada';
   }
 
   function matchesLabelHint(label, rawText) {
@@ -375,8 +350,19 @@
     return target.includes(hint);
   }
 
+  function parseWatchPrices() {
+    return String(state.config.watchPrices || '')
+      .split(',')
+      .map((value) => Number(value.trim()))
+      .filter((value) => Number.isFinite(value) && value > 0);
+  }
+
   function matchesTargetPrice(price) {
     const target = Number(state.config.targetPrice || 0);
+    const watchPrices = parseWatchPrices();
+    if (state.config.priceMode === 'watchlist') {
+      return watchPrices.length ? watchPrices.includes(price) : true;
+    }
     if (!target) return true;
     if (state.config.priceMode === 'exact') return price === target;
     return price <= target;
@@ -386,6 +372,7 @@
     if (!text) return null;
     const normalized = text.replace(/\u00a0/g, ' ');
     const regexes = [
+      /From\s*([0-9]{1,4}(?:[\.,][0-9]{2})?)\s*USD/i,
       /USD\s*([0-9]{1,4}(?:[\.,][0-9]{2})?)/i,
       /US\$\s*([0-9]{1,4}(?:[\.,][0-9]{2})?)/i,
       /\$\s*([0-9]{1,4}(?:[\.,][0-9]{2})?)/,
@@ -428,6 +415,7 @@
       '🎟️ **Coincidencia detectada en FIFA Tickets**',
       `**Precio:** ${best.priceText}`,
       `**Zona/label:** ${best.label}`,
+      `**Precios vigilados:** ${parseWatchPrices().join(', ') || 'sin filtro'}`,
       `**URL:** ${location.href}`,
       '',
       `Coincidencias encontradas: ${all.length}`,
