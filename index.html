@@ -109,14 +109,23 @@
 
     .screen {
       min-height: 820px;
+      height: 820px;
       border-radius: 28px;
       background:
         radial-gradient(circle at top right, rgba(20, 61, 141, 0.11), transparent 24%),
         linear-gradient(180deg, #fcfaf7 0%, #f7f1e8 100%);
-      padding: 20px 18px 22px;
+      padding: 20px 18px 118px;
       display: none;
       position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      box-sizing: border-box;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .screen::-webkit-scrollbar {
+      display: none;
     }
 
     .screen.active {
