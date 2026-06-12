@@ -491,6 +491,11 @@
       flex: 1;
     }
 
+    .sticky-actions--flow {
+      position: static;
+      margin-top: 14px;
+    }
+
     .nav-dock {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -852,7 +857,7 @@
               <strong style="display:block; margin-top:14px;">Accion sugerida</strong>
               <p id="analysisAction" class="section-copy" style="margin-bottom:0;"></p>
             </div>
-            <div class="sticky-actions">
+            <div class="sticky-actions sticky-actions--flow">
               <button class="secondary-btn" data-back>Volver</button>
               <button class="danger-btn" id="analysisHelp">Avisar a mi contacto</button>
             </div>
